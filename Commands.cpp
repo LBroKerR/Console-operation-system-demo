@@ -40,15 +40,15 @@ void Commands::setCommands(string command)
 	{
 		return;
 	}
-	string* str = new string[getCommands_Size() + 1];
-	for (unsigned i = 0; i < getCommands_Size(); i++)
+	setCommands_size(getCommands_Size() + 1);
+	string* str = new string[getCommands_Size()];
+	for (unsigned i = 0; i < getCommands_Size() - 1; i++)
 	{
 		str[i] = getCommand(i);
 	}
-	str[getCommands_Size() + 1] = command;
 	delete[] commands;
+	str[getCommands_Size() - 1] = command;
 	commands = str;
-	setCommands_size(getCommands_Size() + 1);
 }
 
 unsigned Commands::getCurrent_command()
