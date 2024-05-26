@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 using namespace std;
 class Commands
 {
@@ -13,12 +14,12 @@ public:
 	Commands();
 	Commands(string* commandArray, unsigned size);
 	~Commands();
-	unsigned Funcion_number_from_command(string receivedCommand);
+	bool Funcion_number_from_command(string receivedCommand);
 	void setCommands(string command);
+	unsigned getCurrent_command();
 
 private:
 
-	unsigned getCurrent_command();
 	unsigned getCommands_Size();
 	string getCommand();
 	string getCommand(unsigned index);

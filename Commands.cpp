@@ -11,6 +11,7 @@ Commands::Commands(string* commandArray, unsigned size)
 {
 	setCurrent_command(0);
 	setCommands_size(0);
+	commands = nullptr;
 	for (unsigned i = 0; i < size; i++)
 	{
 		setCommands(commandArray[i]);
@@ -21,19 +22,22 @@ Commands::~Commands()
 {
 	delete[] commands;
 }
-
-unsigned Commands::Funcion_number_from_command(string receivedCommand)
+//Compare input to array elements, then return index of the matched elem. if there is no match then return -1
+bool Commands::Funcion_number_from_command(string receivedCommand)
 {
 	for (unsigned i = 0; i < getCommands_Size(); i++)
 	{
-		if (receivedCommand.compare(getCommand(i)))
+		if (!receivedCommand.compare(getCommand(i)))
 		{
-			return i;
+			setCurrent_command(i);
+			return true;
 		}
 	}
-	return -1;//throw unhandled expression
+	return false;//throw unhandled expression
 }
-
+// Check for white caraters, if these comming then return
+//create a new array with a bigger storege, copy every elems to it, then add the new one to the end of the array
+// before point to the new elems array, should delete the old elems array.
 void Commands::setCommands(string command)
 {
 	if (command == "" || command == " " || command == "\n" || command == "\t")
