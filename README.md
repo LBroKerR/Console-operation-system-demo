@@ -4,3 +4,7 @@ Commands class will store the function names, and the indexes of these will be t
 Could be use maps, but it will be upload to a microcontroller, to handle configuration via serial port.
 
 Still working On! 
+
+TO DO:
+
+Create layers based on unfinished EEPROMHandler object!
