@@ -31,7 +31,7 @@ void EEPROMHandler::checkInput(string* command, string print)
 /// <UnderSideMenu>
 /// decode the text witch comes from the serial port
 /// than decide next way step based on the result of the search
-/// if successfuly find move further, else go back to the mainMenü
+/// if successfuly find move further, else go back to the mainMenÃ¼
 /// </UnderSideMenu>
 void EEPROMHandler::UnderSideMenu( string command)
 {
@@ -52,7 +52,7 @@ void EEPROMHandler::UnderSideMenu( string command)
 /// <setMenu>
 /// decode the text witch comes from the serial port
 /// than decide next way step based on the result of the search
-/// if successfuly find move further, else go back to the mainMenü
+/// if successfuly find move further, else go back to the mainMenÃ¼
 /// </setMenu>
 void EEPROMHandler::setMenu( string commands)
 {
@@ -132,7 +132,7 @@ void EEPROMHandler::AutoSave()//data object)
 /// </checkSerial>
 bool EEPROMHandler::checkSerial()
 {
-	if (true)//Serial.avaible() > 0 )
+	if (Serial.avaible() > 0 )
 	{
 		string str = Serial.readString();
 		if (str.compareTo("BIOS"))
