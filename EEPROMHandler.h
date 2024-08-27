@@ -26,14 +26,14 @@
 ///		each type of data stored differently
 ///		eeprom storing data byte by byte
 ///		Therefor becarefull about how you store a data.
-///			Think about the size of data type, for example float is 32 bit, or 4 bytes. 
-///			This means that float needs minimum of 5 byte to store, 1 for the size, 4  for the dataframe.
+///		Think about the size of data type, for example float is 32 bit, or 4 bytes. 
+///		This means that float needs minimum of 5 byte to store, 1 for the size, 4  for the dataframe.
 /// 
 /// bonus:
 /// 
 ///		Callculate the minimum needed size of the eeprom, and define it at the starting point!
-///			sort local datas in order of importance, and pick few data which need to run the device perfectly after a hard reset, or power lost.
-///			Callculate each data size and store it  in  recommeneded way
+///		sort local datas in order of importance, and pick few data which need to run the device perfectly after a hard reset, or power lost.
+///		Callculate each data size and store it  in  recommeneded way
 /// 
 ///		store the address of the datas, or define each datas starting points(address).
 /// 
@@ -41,7 +41,7 @@
 /// 
 ///		bool:			1 byte
 ///		int:			4 bytes
-///		unsigned int:	4 bytes
+///		unsigned int:		4 bytes
 ///		double:			8 bytes
 ///		float:			4 bytes
 ///		char:			1 byte
@@ -53,22 +53,22 @@
 ///		char array: 
 /// 
 ///		>*	IP: 255.255.255.255 -> 1+15 char	16x1
-///		>*	SSID: 1+ max 10 char				11x1
-///		>*	PassWord: 1+ max 10 char			11x1
+///		>*	SSID: 1+ max 10 char			11x1
+///		>*	PassWord: 1+ max 10 char		11x1
 /// 
 ///		int:
 /// 
-///		>*	host								1x4
-///		>	active program index				1x4
-///		>	clock: hour and minute				2x4
+///		>*	host					1x4
+///		>	active program index			1x4
+///		>	clock: hour and minute			2x4
 ///		
 ///		float:
 /// 
-///		*	temperature offset	1				1x4
-///		>	temperature offset	2				1x4
-///		*	humidity offset		1				1x4
-///		>	humidity offset		2				1x4
-///		>	5x24 programable data				120x8
+///		*	temperature offset	1		1x4
+///		>	temperature offset	2		1x4
+///		*	humidity offset		1		1x4
+///		>	humidity offset		2		1x4
+///		>	5x24 programable data			120x8
 /// 
 ///		Summa for a minimum EEPROM size:
 /// 
@@ -83,8 +83,8 @@
 /// 
 /// memory accesspoints for each data defined in a <file_name>.cpp
 /// 
-///	#define IP	
-///	#define SSID
+/// #define IP	
+/// #define SSID
 /// #define PW
 /// #define HOST
 /// 
@@ -135,14 +135,14 @@
  #define EEPROM_SIZE 0x0400 // 1024 bytes
 
  #define FPROG1	     0x0000	// daily programs addresses
- #define FPROG2		 0x00C0	// contain 24 double data/ daily program. 
+ #define FPROG2	     0x00C0	// contain 24 double data/ daily program. 
  #define FPROG3	     0x0180
  #define FPROG4	     0x0240
  #define FPROG5	     0x0301
  
  #define USER	     0x03C0	// wifi data addresses
- #define PW		     0x03C8
- #define IP		     0x03D0
+ #define PW	     0x03C8
+ #define IP	     0x03D0
  #define HOST	     0x03E0
  #define ENABLE	     0x03E4
 
@@ -150,7 +150,7 @@
  #define MIN	     0x03E9
  #define PROG	     0x03ED	//active prog
  #define TMPOFFSET   0x03F1
-
+// will be used in ARDUINO IDE => have to change std::string to String
 class EEPROMHandler
 {
 	Commands mainCommands, sideCommand, UnderSideCommand;
