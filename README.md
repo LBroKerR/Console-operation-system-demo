@@ -7,4 +7,4 @@ Still working On!
 
 TO DO:
 
-Create layers based on unfinished EEPROMHandler object!
+menuhandler sidemenus not work properly ! fix it!
