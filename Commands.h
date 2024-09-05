@@ -6,7 +6,7 @@ using namespace std;
 class Commands
 {
 	string* commands;
-	unsigned current_command;
+	//unsigned current_command;
 	unsigned commands_size;
 
 public:
@@ -14,17 +14,15 @@ public:
 	Commands();
 	Commands(string* commandArray, unsigned size);
 	~Commands();
-	bool Funcion_number_from_command(string receivedCommand);
+	bool Funcion_number_from_command(string receivedCommand, unsigned *index);
 	void setCommands(string command);
-	unsigned getCurrent_command();
+	void setCommands(string* command, unsigned size);
 
 private:
 
 	unsigned getCommands_Size();
-	string getCommand();
 	string getCommand(unsigned index);
 
-	void setCurrent_command(unsigned element);
 	void setCommands_size(unsigned size);
 };
 

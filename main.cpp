@@ -1,73 +1,84 @@
 // main.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-#define SIZE 10
 #include <iostream>
-#define SET "set"
-#define GET "get"
-#define QUIT "quit"
-#define ADD "add"
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#include "MenuHandler.h"
+#include "SerialPortHandler.h"
 using namespace std;
-#include "Commands.h"
-bool func1(string param)
-{
-	return true;
+void law(void* param) {
+	string str = *(string*)param;
+	cout << "The law is " << str <<"if im here." << endl;
 }
-bool func2(string param)
-{
-	return true;
+void vonat(void* param) {
+	string str = *(string*)param;
+	cout << "The train new name is: " << str << endl;
 }
-bool func3(string param)
-{
-	return true;
+void alma(void* param) {
+	string str = *(string*)param;
+	cout << "The apple funcs get the input: " << str << endl;
 }
-bool ToFuncs(string param, string func)
-{
-	if (param.compare(func))
-	{
-		return false;
-	}
-	return true;
+MenuHandler* init(MenuHandler* head) {
+	head = new MenuHandler();
+	MenuHandler* side = new MenuHandler();
+	side->addFunctions("law", law);
+	head->addSideMenus("setparams", side);
+	head->addFunctions("apple", alma);
+	head->addFunctions("train", vonat);
+	return head;
 }
-void menu(bool funcs)
-{
-	string input;
-	unsigned i = 1;
-	while (i != 0)
-	{
-		if ((bool)(cin >> input))
-		{
-			i = 0;
-			while (true)
-			{
-				i += ToFuncs(input, QUIT);
-				i += ToFuncs(input, SET);
-				i += ToFuncs(input, GET);
-				i += ToFuncs(input, ADD);
+
+void system(MenuHandler* head, SerialPortHandler* IO){
+	string param="";
+	MenuHandler* tmp = nullptr;
+	MenuHandler* active = head;
+	bool notquitting = true;
+	void (*func)(void*) = nullptr;
+	if (active != nullptr){
+		do{
+			IO->checkInput(param,"Input:?");
+			if (IO->useStack(&param)) {
+				notquitting = active->menu(&param, tmp, &func);
+				param = "";
+				if (tmp != nullptr && notquitting) {
+					active = tmp;
+					tmp = nullptr;
+				}
+				else if (func != nullptr && notquitting){
+					IO->checkInput(param, "Input:?");
+					if (IO->useStack(&param)){
+						func((void*)&param);
+					}
+					func = nullptr;
+				}
+				else if ( notquitting) {
+					active = head;
+					tmp = nullptr;
+				}
 			}
-		}
+		} while (!notquitting);
 	}
 }
-int main()
-{
-	//bool (*allfuncs[3])(string);
-	//allfuncs[0] = func1;
-	//allfuncs[1] = func2;
-	//allfuncs[2] = func3;
-	//menu(allfuncs);
-	string test[] = {"Start", "Stop", "End"};
-	string input = "";
-	Commands *engine1=new Commands(test,3);
-	cin >> input;
-	engine1->setCommands(input);
-	do
-	{
-		cin >> input;
-		if (engine1->Funcion_number_from_command(input))
+
+int main() {
+	MenuHandler *menusystem=nullptr;
+	SerialPortHandler* IO = new SerialPortHandler();
+	menusystem=init(menusystem);
+	MenuHandler* tmp = nullptr;
+	MenuHandler* tmp1 = nullptr;
+	void (*func)(void*) = nullptr;
+	string a = "setparams";
+	string b = "law";
+	string c = "done";
+	if (menusystem->menu(&a, tmp, &func)) {
+		if (tmp->menu(&b, tmp1, &func))
 		{
-			cout << engine1->getCurrent_command();
+			tmp1->print();
 		}
-
-	} while (engine1->getCurrent_command()!=2);
-
+	}
+	delete menusystem;
+	delete IO;
+	_CrtDumpMemoryLeaks();
 	return 0;
 }
