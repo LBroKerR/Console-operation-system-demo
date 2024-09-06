@@ -5,6 +5,11 @@ Could be use maps, but it will be upload to a microcontroller, to handle configu
 
 Still working On! 
 
+Working as a consol app at the moment.
+Complex menu system can be build via handlers. and SerialTask contain mine.
+
 TO DO:
 
-menuhandler sidemenus not work properly ! fix it!
+integrate to esp32!
+write Menufunctions, and user eepromhandler(not mine) to complete! 
+
