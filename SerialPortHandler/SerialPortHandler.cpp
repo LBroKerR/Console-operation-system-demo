@@ -106,8 +106,7 @@ void SerialPortHandler::checkInput(string command, string print) {
 	ConvertToStack(command);
 }
 
-bool SerialPortHandler::getdata(string* param)
-{
+bool SerialPortHandler::getdata(string* param){
 	if (stackData != nullptr) {
 		return false;
 	}
