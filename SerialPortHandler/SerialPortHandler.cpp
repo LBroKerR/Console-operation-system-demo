@@ -118,7 +118,9 @@ bool SerialPortHandler::getdata(string* param)
 		return false;
 	}
 	if (useStack(param)) {
-		return true;
+		if ( *param != "cancel" ) {
+			return true;
+		}
 	}
 	return false;
 }
