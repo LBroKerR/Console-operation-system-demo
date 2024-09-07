@@ -7,6 +7,7 @@ Still working On!
 
 Working as a consol app at the moment.
 Complex menu system can be build via handlers. and SerialTask contain mine.
+main.cpp only needs for console application.
 
 TO DO:{
   Integrate to esp32! done! Look after in SerialTask_IDE folder.
