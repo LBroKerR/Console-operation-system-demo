@@ -8,8 +8,13 @@ Still working On!
 Working as a consol app at the moment.
 Complex menu system can be build via handlers. and SerialTask contain mine.
 
-TO DO:
+TO DO:{
+  Integrate to esp32! done! Look after in SerialTask_IDE folder.
+  Change Serial_Task.h and .cpp to OOP cpp class, which use the clean code steps!
+  Create interupt in the new SerialTaskHandler objet for get data frame from serial port if avaible! 
+}
 
-integrate to esp32!
-write Menufunctions, and user eepromhandler(not mine) to complete! 
-
+IF YOU USE:{
+  Create external function in Menufunction.h, and .cpp
+  Build up the menu system in Serial_Task.cpp init function. //Use it as I did. Use my code as an example! 
+}
