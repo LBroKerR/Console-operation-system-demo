@@ -74,7 +74,7 @@ void SerialTask(void* params) {
 		if (head == nullptr) {
 			head = tmp;
 		}
-    vTaskDelay(10 / portTICK_PERIOD_MS);
+    
 	}
 	delete head;
 	delete IO;
