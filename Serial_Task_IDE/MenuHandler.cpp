@@ -158,20 +158,20 @@ bool MenuHandler::addFunctions(String CallName, bool(*func)(void*))
 String MenuHandler::print(){
 	String str = "";
 	if (SideMenu != nullptr) {
-		str += "menus:\n\t";
+		str += "menus:\n\r\t";
 		for (unsigned i = 0; i < Menus_Elems; i++){
 			str += MenuCommands->getCommand(i);
-			str += "\n\t";
+			str += "\n\r\t";
 		}
-		str += "\n";
+		str += "\n\r";
 	}
 	if (funcs != nullptr) {
-		str += "Functions:\n\t";
+		str += "Functions:\n\r\t";
 		for (unsigned i = 0; i < Funcs_Elems; i++){
 			str += FunctionCommands->getCommand(i);
-			str += "\n\t";
+			str += "\n\r\t";
 		}
-		str += "\n";
+		str += "\n\r";
 	}
 	return str;
 }

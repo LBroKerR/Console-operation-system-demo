@@ -37,17 +37,31 @@ void SerialTask::init() {
 	setparams->addSideMenus("wifimenu", wifimenu);
 	menu->addSideMenus("set", setparams);
 }
+
 bool SerialTask::getCommand(){
-  if(!IO->useStack(&incomingData)){
-      if(Serial.available()>0){
-        Serial.println(" ");
-        IO->checkInput(incomingData,"Input:");
-        IO->useStack(&incomingData);
-        return true;
+  if (!IO->useStack(&incomingData)) {
+    char ch[50]; 
+    unsigned i = 0; 
+    Serial.print("\n\rInput available:\n\r");
+    while (i<49) {
+      if(Serial.available()){
+        ch[i] = (char)Serial.read();
+        if(ch[i]!='\b'){
+          Serial.print(ch[i]);
+          if (ch[i] == '\n' || ch[i] == '\r') {
+            ch[i] = '\0';
+            incomingData = ch;
+            IO->checkInput(incomingData, "");
+            IO->useStack(&incomingData);
+            return true;
+          }
+        i++;
+        }
       }
-      return false;
+    }
+    return false;
   }
-  return true;
+  return true;;
 }
 
 bool SerialTask::getData(String*str){
@@ -86,9 +100,10 @@ bool SerialTask::system(MenuHandler*&head) {
 		return true;
 	}
 	else if (tmp == nullptr ) {
-    while(!getData(&incomingData) && incomingData!="cancel" && incomingData!="quit" && incomingData!="help"){
-      Serial.println("in while");
-      delay(1000);
+    if(head!=menu){
+      while(!getData(&incomingData) && incomingData!="cancel" && incomingData!="quit" && incomingData!="help"){
+        delay(1000);
+      }
     }
 		if(!tmpfunc((void*)&incomingData)){//do function with 'a' data
       //log error!
