@@ -10,12 +10,13 @@ Complex menu system can be build via handlers. and SerialTask contain mine.
 main.cpp only needs for console application.
 
 TO DO:{
-  Integrate to esp32! done! Look after in SerialTask_IDE folder.
-  Change Serial_Task.h and .cpp to OOP cpp class, which use the clean code steps!
-  Create interupt in the new SerialTaskHandler objet for get data frame from serial port if avaible! 
+  Integrate to esp32! done! Look after in Serial_Task_ESP32 folder.
+  Change Serial_Task.h and .cpp to OOP cpp class, which use the clean code steps! //Function.h .cpp not compatible, therefor stay like that.//
+  Create interupt in the new SerialTaskHandler objet for get data frame from serial port if avaible! //Use PuTTY, and it's serial unstablity //
 }
 
 IF YOU USE:{
   Create external function in Menufunction.h, and .cpp
   Build up the menu system in Serial_Task.cpp init function. //Use it as I did. Use my code as an example! 
+  Recommended to Install PuTTY!
 }
