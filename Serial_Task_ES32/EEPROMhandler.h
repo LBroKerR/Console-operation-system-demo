@@ -16,16 +16,16 @@
 #define NEXT         0x0008
                             //char*
 #define USER	     0x03C1	// wifi data addresses
-#define PW		     0x03C9
-#define IP		     0x03D1
-#define HOST	     0x03E1 //unsigned
-#define ENABLE	     0x03E5 // bool
+#define PW		     0x03CA
+#define IP		     0x03D3
+#define HOST	     0x03E4 //unsigned
+#define ENABLE	     0x03E8 // bool
 #define IPSIZE       0x0010
 
-#define HOUR	     0x03E6	// other data addresses // unsigned
-#define MIN			 0x03EA // unsigned
+#define HOUR	     0x03E9	// other data addresses // unsigned
+#define MIN			 0x03ED // unsigned
 #define PROG	     0x03EE	//active prog // unsigned
-#define TMPOFFSET    0x03F2 //double
+#define TMPOFFSET    0x03F5 //double
 
 
     bool isnumber(String);
