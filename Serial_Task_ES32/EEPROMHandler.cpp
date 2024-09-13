@@ -239,12 +239,12 @@ bool check_IP_datagramm(void* param){
               showPW = true;
           }
           *str = "";
-          *str += "\n\r IP address: "+ getIP() + "\n\r Username: "+getUser(10)+ "\n\r password: ";
+          *str += "\n\r IP address: "+ getIP() + "\n\r Username: "+getUser(8)+ "\n\r password: ";
           if (!showPW) {
               *str += "**********";
           }
           else {
-              *str += getPASS(10);
+              *str += getPASS(8);
           }
           *str += "\n\r HOST: "+ String(getHost())+"\n\r Wifi state: ";
           if (getSwitch()) {
