@@ -200,30 +200,49 @@ String ACTIVEPROGtest(){
 String PROGRAMStest(){
   String output="TEST ";
   double test[24];
-  double* returnParam;
+  double prog[24];
   for(unsigned i=0; i<24; i++){
-    test[i]=20.15;
+    prog[i]=0.0;
   }
-  if(write_out_full_program(1,test)){
-    returnParam=getProgram(1);
-    for(unsigned i=0; i<24; i++){
-      if(returnParam[i]!=test[i]){
-        output+="\033[1m\033[41m";
-        output+="FAILED: i:";
-        output+=i;
-        output+=" test number: ";
-        output+=test[i];
-        output+=" returned number: ";
-        output+=returnParam[i];
-        output+="'\033[0m\n\r";
-        return output;
+  for(unsigned i=0; i<5; i++){
+      for(unsigned index=0; index<24; index++){
+        test[index]=20.15;
+        test[index]+=(double)i;
       }
+    if(!write_out_full_program(i,test)){
+      output+="\033[1m\033[41mFAILED write: ";
+      output+="index:";
+      output+=String(i);
+      output+="\033[0m\n\r";
     }
-    output+="\033[1m\033[42mSUCCEEDED\033[0m\n\r";
   }
-  else{
-    output+="\033[1m\033[41mFAILED\033[0m\n\r";
+  for(unsigned i=0; i<5; i++){
+      if(!getProgram(i,prog)){
+        output+="\033[1m\033[41mFAILED\033[0m\n\r";
+      }else{
+      for(unsigned index=0; index<24; index++){
+        test[index]=20.15;
+        test[index]+=(double)i;
+      }
+        //output+=String(i)+":\n\r ";
+        for(unsigned index=0; index<24;index++){
+          //output+=String(index)+": "+String(prog[index])+ " "+ String(test[index])+"\n\r";
+          if(prog[index]!=test[index]){
+            output+="\033[1m\033[41m";
+            output+="FAILED: index:";
+            output+=index;
+            output+=" test number: ";
+            output+=test[index];
+            output+=" returned number: ";
+            output+=prog[index];
+            output+="'\033[0m\n\r";
+            return output;
+          }
+        }
+        //output+="\n\r";
+      }
   }
+  output+="\033[1m\033[42mSUCCEEDED\033[0m\n\r";
   return output;
 }
 
@@ -290,7 +309,7 @@ delay(100);
   str[17]+=ACTIVEPROGtest();
 delay(100);
   str[18]+="save FULL PROGRAMS test: ";//ERROR!
-  //str[18]+=PROGRAMStest();
+  str[18]+=PROGRAMStest();
 delay(100);
   //String pass=getPASS(10);
   //Hardreset((void*)&pass);

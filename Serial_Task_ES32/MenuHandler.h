@@ -6,7 +6,7 @@
 #include "Functions.h"
 #include <Arduino.h>
 
- #define ERROR		 0		 
+ #define ERROR	 0		 
  #define MENU		 1		
  #define FUNC		 2	
 

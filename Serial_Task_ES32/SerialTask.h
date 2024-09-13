@@ -3,11 +3,10 @@
 #define SERIALTASK_H
 
 #include "Arduino.h"
-
+#include <EEPROM.h>
 #include "MenuHandler.h"
 #include "SerialPortHandler.h"
 #include "EEPROMhandler.h"
-#include <EEPROM.h>
 #define EEPROM_SIZE  0x0400
 
 class SerialTask{

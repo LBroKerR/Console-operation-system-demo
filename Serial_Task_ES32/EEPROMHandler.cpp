@@ -25,29 +25,29 @@
     return true;//if all character correctly create a number, int, uint, double, float
   }
   /// <MywriteString>
-  /// 
+  /// !! write out a String, char by char, or byte by byte. 
   /// </MywriteString>
   void MywriteString(unsigned address, String str) {
       for (int i = 0; i < str.length(); i++) {
-          EEPROM.write(address + i, str[i]);  // Karakterenként írjuk
+          EEPROM.write(address + i, str[i]);  //write to eeprom 
       }
 
-      EEPROM.write(address + str.length(), '\0');  // Null terminátor hozzáadása a végére
-      EEPROM.commit();  // Mentés az EEPROM-ba
+      EEPROM.write(address + str.length(), '\0'); // closing 
+      EEPROM.commit();  // save to eeprom
   }
   /// < MyreadString>
-  /// 
+  /// !! read char from address, save it in a char array, then return it as a String
   /// </ MyreadString>
   String MyreadString(unsigned address, unsigned size) {
       char str[size];
       int i = 0;
       char c;
-      // Karakterenként olvassuk az EEPROM-ból, amíg nem érünk null terminátorhoz
+      // reading while not reaching the closing
       while ((c = EEPROM.read(address + i)) != '\0' && i < (size-1)) {
           str[i] = c;
           i++;
       }
-      str[i] = '\0';  // Null terminátor hozzáadása
+      str[i] = '\0';  // closing 
       return String(str);
   }
 
@@ -205,8 +205,8 @@ bool check_IP_datagramm(void* param){
             default: return false;
         }
         for(unsigned i=0; i<PSIZE; i++){
-            EEPROM.writeDouble(address, program[i] );
-            address+=9;
+            EEPROM.writeDouble(address, program[i]);
+            address+=NEXT;
         }
         EEPROM.commit();
         return true;
@@ -223,11 +223,13 @@ bool check_IP_datagramm(void* param){
             return true;
           }
         }
-      *str="password hidden!";
+      *str="\n\rType like 'Hardreset PASSWORD' if you want to clear EEPROM.\n\r";
       param=str;
       return false;
     }
 
+    // print out all the data from eeprom to serial port, except full programs.
+    // use like "read PASSWORD" if you want to see the password
     bool print(void* param){
       String*str=(String*)param;
       bool showPW = false;
@@ -237,7 +239,7 @@ bool check_IP_datagramm(void* param){
               showPW = true;
           }
           *str = "";
-          *str += "\n\rIP address: "+ getIP() + "\n\r Username: "+getUser(10)+ "\n\r password: ";
+          *str += "\n\r IP address: "+ getIP() + "\n\r Username: "+getUser(10)+ "\n\r password: ";
           if (!showPW) {
               *str += "**********";
           }
@@ -277,8 +279,8 @@ bool check_IP_datagramm(void* param){
 
     //return nullptr if index not valid, else return an array which contain 24 double data. 
     //Every data means a temp, and every index means the hour where the data will be actice
-    double *getProgram(unsigned index){
-        double array[PSIZE]={0.0};
+    bool getProgram(unsigned index, double *prog){
+        
         unsigned address=0;
         switch (index){
             case 0:address=FPROG1;break;
@@ -286,14 +288,14 @@ bool check_IP_datagramm(void* param){
             case 2:address=FPROG3;break;
             case 3:address=FPROG4;break;
             case 4:address=FPROG5;break;
-            default: return nullptr;
+            default: return false;
         }
         for (unsigned i = 0; i < PSIZE; i++)
         {
-            array[i]=EEPROM.readDouble(address);
+            prog[i]=EEPROM.readDouble(address);
             address+=NEXT;
         }
-        return array;
+        return true;
     }
 
     //return offset to mesure corretly
