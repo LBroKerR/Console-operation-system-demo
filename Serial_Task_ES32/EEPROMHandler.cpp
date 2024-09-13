@@ -107,7 +107,7 @@ bool check_IP_datagramm(void* param){
         if(str==nullptr){
             return false;
         }
-        if(str->length()<=10){
+        if(str->length()<=8){
             MywriteString(PW, *str);
             return true;
         }
@@ -119,7 +119,7 @@ bool check_IP_datagramm(void* param){
         if(str==nullptr){
             return false;
         }
-        if (str->length() <= 10) {
+        if (str->length() <= 8) {
             MywriteString(USER, *str);
             return true;
         }
@@ -235,7 +235,7 @@ bool check_IP_datagramm(void* param){
       bool showPW = false;
       unsigned hourtmp = 0, mintmp = 0;
       if (str != nullptr) {
-          if (*str == getPASS(10)) {
+          if (*str == getPASS(8)) {
               showPW = true;
           }
           *str = "";
