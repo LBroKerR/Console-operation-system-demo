@@ -107,7 +107,7 @@ bool check_IP_datagramm(void* param){
         if(str==nullptr){
             return false;
         }
-        if(str->length()<=8){
+        if(str->length()<=UPSIZE){
             MywriteString(PW, *str);
             return true;
         }
@@ -119,7 +119,7 @@ bool check_IP_datagramm(void* param){
         if(str==nullptr){
             return false;
         }
-        if (str->length() <= 8) {
+        if (str->length() <= UPSIZE) {
             MywriteString(USER, *str);
             return true;
         }
@@ -215,7 +215,7 @@ bool check_IP_datagramm(void* param){
     bool Hardreset(void*param){
        String* str = (String*)param;
        if(str!=nullptr){
-          if(*str==getPASS(10)){
+          if(*str==getPASS(UPSIZE)){
             for(unsigned i=FPROG1; i< EEPROM_SIZE; i++){
               EEPROM.writeBool(i, false);
             }
@@ -235,16 +235,16 @@ bool check_IP_datagramm(void* param){
       bool showPW = false;
       unsigned hourtmp = 0, mintmp = 0;
       if (str != nullptr) {
-          if (*str == getPASS(8)) {
+          if (*str == getPASS(UPSIZE)) {
               showPW = true;
           }
           *str = "";
-          *str += "\n\r IP address: "+ getIP() + "\n\r Username: "+getUser(8)+ "\n\r password: ";
+          *str += "\n\r IP address: "+ getIP() + "\n\r Username: "+getUser(UPSIZE)+ "\n\r password: ";
           if (!showPW) {
               *str += "**********";
           }
           else {
-              *str += getPASS(8);
+              *str += getPASS(UPSIZE);
           }
           *str += "\n\r HOST: "+ String(getHost())+"\n\r Wifi state: ";
           if (getSwitch()) {
