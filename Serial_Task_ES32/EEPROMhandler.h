@@ -7,26 +7,26 @@
 
 #define EEPROM_SIZE  0x0400 // 1024 bytes 
                             //dpuble array
-#define FPROG1	     0x0000	// daily programs addresses
-#define FPROG2		   0x00C0	// contain 24 double data/ daily program. 
-#define FPROG3	     0x0180
-#define FPROG4	     0x0240
-#define FPROG5	     0x0301
+#define FPROG1       0x0000	// daily programs addresses
+#define FPROG2       0x00C0	// contain 24 double data/ daily program. 
+#define FPROG3       0x0180
+#define FPROG4       0x0240
+#define FPROG5       0x0301
 #define PSIZE        0x0018
 #define NEXT         0x0008
                             //char*
-#define USER	       0x03C1	// wifi data addresses
-#define PW		       0x03CA
+#define USER         0x03C1	// wifi data addresses
+#define PW           0x03CA
 #define UPSIZE       0x0009
-#define IP		       0x03D3
-#define HOST	       0x03E4 //unsigned
-#define ENABLE	     0x03E8 // bool
+#define IP           0x03D3
+#define HOST         0x03E4 //unsigned
+#define ENABLE       0x03E8 // bool
 #define IPSIZE       0x0010
 
-#define HOUR	      0x03E9	// other data addresses // unsigned
-#define MIN			    0x03ED // unsigned
-#define PROG	      0x03F1	//active prog // unsigned
-#define TMPOFFSET   0x03F5 //double
+#define HOUR         0x03E9	// other data addresses // unsigned
+#define MIN          0x03ED // unsigned
+#define PROG         0x03F1	//active prog // unsigned
+#define TMPOFFSET    0x03F5 //double
 
 
     bool isnumber(String);
