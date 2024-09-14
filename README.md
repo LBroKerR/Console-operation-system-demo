@@ -16,7 +16,7 @@ TO DO:{
 }
 
 IF YOU USE:{
-  Create external function in Menufunction.h, and .cpp
+  Create external functions and include it to sourse file, where the menu initialized.(for example: Menufunction.h, and .cpp)
   Build up the menu system in Serial_Task.cpp init function. //Use it as I did. Use my code as an example! 
-  Recommended to Install PuTTY!
+  Recommended to Install PuTTY for serial communication. if esp32 or other device will run the code!
 }
