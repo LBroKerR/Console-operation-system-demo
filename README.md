@@ -3,17 +3,13 @@ Menu will created with function array.
 Commands class will store the function names, and the indexes of these will be the key to the next function.
 Could be use maps, but it will be upload to a microcontroller, to handle configuration via serial port.
 
-Still working On! 
 
-Working as a consol app at the moment.
+Working as a consol app in windows/linux/mac and integrated to microprocessors.
 Complex menu system can be build via handlers. and SerialTask contain mine.
 main.cpp only needs for console application.
 
-TO DO:{
-  Integrate to esp32! done! Look after in Serial_Task_ESP32 folder.
-  Change Serial_Task.h and .cpp to OOP cpp class, which use the clean code steps! //Function.h .cpp not compatible, therefor stay like that.//
-  Create interupt in the new SerialTaskHandler objet for get data frame from serial port if avaible! //Use PuTTY, and it's serial unstablity //
-}
+//ESP32 flashed via Arduino IDE, with setting of the esp32_doit_devkit
+//use simultaneously the in built Serial, and EEPROM will cause the esp32 hardware freezing, and watch dog timer won't reset the board.
 
 IF YOU USE:{
   Create external functions and include it to sourse file, where the menu initialized.(for example: Menufunction.h, and .cpp)
