@@ -8,7 +8,7 @@ Working as a consol app in windows/linux/mac and integrated to microprocessors.
 Complex menu system can be build via handlers. and SerialTask contain mine.
 main.cpp only needs for console application.
 
-//ESP32 flashed via Arduino IDE, with setting of the esp32_doit_devkit
+//ESP32 flashed via Arduino IDE, with setting of the esp32_doit_devkit/esp32 dev module( partition scheme: minimal SPIFFS)
 //use simultaneously the in built Serial, and EEPROM will cause the esp32 hardware freezing, and watch dog timer won't reset the board.
 
 IF YOU USE:{
